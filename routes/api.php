@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::apiResource('galleries', GalleryController::class);
+Route::put("/settings/update", [SettingController::class, 'update']);
+Route::get("/settings/{settingType}", [SettingController::class, 'show']);
+
+Route::apiResource('posts', PostController::class);
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
